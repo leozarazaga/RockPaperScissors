@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class NewGame {
 
     public static void newGame() {
+        System.out.println("Testing something new here!");
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nNew Game\n̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅̅ ");
