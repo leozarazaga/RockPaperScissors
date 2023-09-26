@@ -15,7 +15,6 @@ public class NewGame {
     public static void newGame() {
         Scanner scanner = new Scanner(System.in);
 
-
         System.out.println("\nNew Game\n̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅̅ ");
         System.out.print("Enter your name: ");
         String playerName = scanner.nextLine();
@@ -24,7 +23,6 @@ public class NewGame {
         int roundsSelectedByPlayer = scanner.nextInt();
 
         playRounds(playerName, roundsSelectedByPlayer, scanner);
-
     }
 
 
