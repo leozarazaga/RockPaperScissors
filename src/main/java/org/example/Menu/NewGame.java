@@ -1,20 +1,17 @@
 package org.example.Menu;
 
+import org.example.Computer;
 import org.example.GameLogic.GameLogic;
 import org.example.Moves.MoveStrategy;
-import org.example.Moves.Paper;
-import org.example.Moves.Rock;
-import org.example.Moves.Scissors;
 import org.example.Player;
-
-import java.util.Random;
 import java.util.Scanner;
 
 public class NewGame {
 
+    static Scanner scanner = new Scanner(System.in);
+
     public static void newGame() {
-        System.out.println("Testing something new here!");
-        Scanner scanner = new Scanner(System.in);
+        //REFACTOR THIS CODE LATER ON!! (No spaghetti code here!)
 
         System.out.println("\nNew Game\n̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅̅ ");
         System.out.print("Enter your name: ");
@@ -23,58 +20,43 @@ public class NewGame {
         System.out.print("Rounds to play: ");
         int roundsSelectedByPlayer = scanner.nextInt();
 
-        playRounds(playerName, roundsSelectedByPlayer, scanner);
-    }
+        Computer computer = new Computer();
+        Player player = new Player(playerName);
 
 
-    private static void playRounds(String playerName, int roundsSelectedByPlayer, Scanner scanner) {
+
         int roundCount = 0;
         while (roundCount < roundsSelectedByPlayer) {
             roundCount++;
 
-            MoveStrategy playerChoice = getPlayerChoice(scanner);
-            MoveStrategy computerChoice = generateComputerMove();
+            System.out.println("\nRound " + roundCount + " / " + roundsSelectedByPlayer);
+
+            MoveStrategy playerChoice = player.getPlayerChoice(scanner);
+            MoveStrategy computerChoice = computer.generateComputerMove();
 
             System.out.println("\nYou selected: " + playerChoice.moveAttack());
             System.out.println("Computer selected: " + computerChoice.moveAttack());
+            scanner.nextLine();
 
             GameLogic game = new GameLogic();
-            game.PlayGame(playerChoice, computerChoice);
+            String roundResult = game.PlayGame(playerChoice, computerChoice);
+            System.out.println(roundResult);
+
+            if (roundResult.equals("Player wins!")) {
+                player.incrementPlayerScore();
+            } else if (roundResult.equals("Computer wins!")) {
+                computer.incrementComputerScore();
+            }
+
         }
+        System.out.println("\nFinal Score: " + player.getName() + " " + player.getScore() + " - " + computer.getScore() + " Computer");
+        goBackToMainMenu();
     }
 
-    private static MoveStrategy generateComputerMove() {
-        Random random = new Random();
-        int computerChoice = random.nextInt(3) + 1;
-
-        switch (computerChoice) {
-            case 1:
-                return new Rock();
-            case 2:
-                return new Paper();
-            case 3:
-                return new Scissors();
-        }
-        return null;
+    public static void goBackToMainMenu(){
+        System.out.print("\n↩ Press Enter to go back ");
+        scanner.nextLine();
+        MainMenu.mainMenu();
     }
 
-    private static MoveStrategy getPlayerChoice(Scanner scanner) {
-        System.out.println("\n1. Rock");
-        System.out.println("2. Paper");
-        System.out.println("3. Scissors");
-        System.out.print("Choose your move: ");
-        int playerChoice = scanner.nextInt();
-
-        switch (playerChoice) {
-            case 1:
-                return new Rock();
-            case 2:
-                return new Paper();
-            case 3:
-                return new Scissors();
-            default:
-                System.out.println("Invalid choice. Select 1, 2, or 3.");
-                return getPlayerChoice(scanner);
-        }
-    }
 }

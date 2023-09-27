@@ -4,14 +4,15 @@ import java.util.Scanner;
 
 public class MainMenu {
     static Scanner scanner = new Scanner(System.in);
+    static boolean programActive = true;
 
     public static void mainMenu() {
-        boolean programActive = true;
 
         if (programActive) {
             System.out.println("╔══════════════════════╗");
             System.out.println("  ROCK PAPER SCISSORS");
             System.out.println("╚══════════════════════╝");
+            programActive = false;
         }
 
         System.out.println("\n\t MAIN MENU\n\t̅ ̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅̅ ̅̅ ");
