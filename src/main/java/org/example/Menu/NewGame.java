@@ -6,6 +6,7 @@ import org.example.Moves.MoveStrategy;
 import org.example.Player;
 import java.util.Scanner;
 
+
 public class NewGame {
 
     static Scanner scanner = new Scanner(System.in);
@@ -42,6 +43,9 @@ public class NewGame {
             String roundResult = game.PlayGame(playerChoice, computerChoice);
             System.out.println(roundResult);
 
+            player.addToPlayerHistory(playerChoice.moveAttack(),computerChoice.moveAttack(), roundResult);
+            computer.addToComputerHistory(computerChoice.moveAttack(), playerChoice.moveAttack(), roundResult);
+
             if (roundResult.equals("Player wins!")) {
                 player.incrementPlayerScore();
             } else if (roundResult.equals("Computer wins!")) {
@@ -49,6 +53,9 @@ public class NewGame {
             }
 
         }
+
+        History.displayGameHistory(player, computer);
+
         System.out.println("\nFinal Score: " + player.getName() + " " + player.getScore() + " - " + computer.getScore() + " Computer");
         goBackToMainMenu();
     }

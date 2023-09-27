@@ -26,7 +26,7 @@ public class MainMenu {
                 NewGame.newGame();
                 break;
             case 2:
-                System.out.println("Case 2");
+
                 break;
             case 3:
                 programActive = false;
