@@ -26,6 +26,7 @@ public class MainMenu {
                 NewGame.newGame();
                 break;
             case 2:
+                History.displayGameHistory();
 
                 break;
             case 3:

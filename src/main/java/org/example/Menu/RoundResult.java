@@ -1,9 +1,9 @@
 package org.example.Menu;
 
 public class RoundResult {
-    private String playerChoice;
-    private String computerChoice;
-    private String result;
+    private final String playerChoice;
+    private final String computerChoice;
+    private final String result;
 
     public RoundResult(String playerChoice, String computerChoice, String result) {
         this.playerChoice = playerChoice;
@@ -23,5 +23,6 @@ public class RoundResult {
     public String getResult() {
         return result;
     }
+
 }
 

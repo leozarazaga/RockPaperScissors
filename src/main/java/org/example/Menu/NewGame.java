@@ -4,12 +4,24 @@ import org.example.Computer;
 import org.example.GameLogic.GameLogic;
 import org.example.Moves.MoveStrategy;
 import org.example.Player;
+
+import java.util.List;
 import java.util.Scanner;
 
 
 public class NewGame {
 
     static Scanner scanner = new Scanner(System.in);
+    public static Player player;
+    private static Computer computer;
+
+   /* public static Player getPlayer() {
+        return player;
+    }
+
+    public static Computer getComputer() {
+        return computer;
+    }*/
 
     public static void newGame() {
         //REFACTOR THIS CODE LATER ON!! (No spaghetti code here!)
@@ -21,9 +33,9 @@ public class NewGame {
         System.out.print("Rounds to play: ");
         int roundsSelectedByPlayer = scanner.nextInt();
 
-        Computer computer = new Computer();
-        Player player = new Player(playerName);
 
+        computer = new Computer();
+        player = new Player(playerName);
 
 
         int roundCount = 0;
@@ -43,24 +55,23 @@ public class NewGame {
             String roundResult = game.PlayGame(playerChoice, computerChoice);
             System.out.println(roundResult);
 
-            player.addToPlayerHistory(playerChoice.moveAttack(),computerChoice.moveAttack(), roundResult);
-            computer.addToComputerHistory(computerChoice.moveAttack(), playerChoice.moveAttack(), roundResult);
-
             if (roundResult.equals("Player wins!")) {
                 player.incrementPlayerScore();
             } else if (roundResult.equals("Computer wins!")) {
                 computer.incrementComputerScore();
             }
 
+            player.addToPlayerHistory(playerChoice.moveAttack(), computerChoice.moveAttack(), roundResult);
+            RoundResult result = new RoundResult(playerChoice.moveAttack(), computerChoice.moveAttack(), roundResult);
+            History.addToGameHistory(player, result);
         }
-
-        History.displayGameHistory(player, computer);
 
         System.out.println("\nFinal Score: " + player.getName() + " " + player.getScore() + " - " + computer.getScore() + " Computer");
         goBackToMainMenu();
     }
 
-    public static void goBackToMainMenu(){
+
+    public static void goBackToMainMenu() {
         System.out.print("\n↩ Press Enter to go back ");
         scanner.nextLine();
         MainMenu.mainMenu();

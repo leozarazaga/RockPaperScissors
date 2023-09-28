@@ -61,6 +61,7 @@ public class Player {
     }
     public void addToPlayerHistory(String playerChoice, String computerChoice, String gameRoundResult){
         playerHistory.add(new RoundResult(playerChoice, computerChoice, gameRoundResult));
+        //System.out.println("Added to player history: " + playerChoice + " | " + computerChoice + " | " + gameRoundResult); // Debug print
     }
 
 }

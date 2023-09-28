@@ -24,10 +24,6 @@ public class Computer {
         return score;
     }
 
-    public List<RoundResult> getComputerHistory() {
-        return computerHistory;
-    }
-
     public void incrementComputerScore() {
         score++;
     }
@@ -47,9 +43,11 @@ public class Computer {
         return null;
     }
 
+    public List<RoundResult> getComputerHistory() {
+        return computerHistory;
+    }
     public void addToComputerHistory(String playerChoice, String computerChoice, String gameRoundResult) {
         computerHistory.add(new RoundResult(playerChoice, computerChoice, gameRoundResult));
     }
-
 
 }
