@@ -9,15 +9,11 @@ public class GameLogic {
         String computerSelectsMove = computerStrategy.moveAttack();
 
         if (playerSelectsMove.equals(computerSelectsMove)) {
-            //System.out.println("It is a tie!");
             return "It is a tie!";
         } else if ((playerSelectsMove.equals("Rock") && computerSelectsMove.equals("Scissors")) ||
                 (playerSelectsMove.equals("Paper") && computerSelectsMove.equals("Rock")) ||
-                (playerSelectsMove.equals("Scissors") && computerSelectsMove.equals("Paper"))) {
-            //System.out.println("Player wins!");
-            return "Player wins!";
+                (playerSelectsMove.equals("Scissors") && computerSelectsMove.equals("Paper"))) {return "Player wins!";
         } else {
-            //System.out.println("Computer wins!");
             return "Computer wins!";
         }
     }

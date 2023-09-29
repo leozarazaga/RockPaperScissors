@@ -27,7 +27,6 @@ public class MainMenu {
                 break;
             case 2:
                 History.displayGameHistory();
-
                 break;
             case 3:
                 programActive = false;

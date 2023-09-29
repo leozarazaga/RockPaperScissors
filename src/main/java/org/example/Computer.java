@@ -19,7 +19,6 @@ public class Computer {
         this.computerHistory = new ArrayList<>();
     }
 
-    //Getters
     public int getScore() {
         return score;
     }
@@ -42,12 +41,4 @@ public class Computer {
         }
         return null;
     }
-
-    public List<RoundResult> getComputerHistory() {
-        return computerHistory;
-    }
-    public void addToComputerHistory(String playerChoice, String computerChoice, String gameRoundResult) {
-        computerHistory.add(new RoundResult(playerChoice, computerChoice, gameRoundResult));
-    }
-
 }

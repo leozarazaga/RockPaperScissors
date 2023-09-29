@@ -11,7 +11,6 @@ public class RoundResult {
         this.result = result;
     }
 
-    // Getters
     public String getPlayerChoice() {
         return playerChoice;
     }
@@ -23,6 +22,5 @@ public class RoundResult {
     public String getResult() {
         return result;
     }
-
 }
 
