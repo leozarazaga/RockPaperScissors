@@ -1,4 +1,4 @@
-package org.example.Moves;
+package org.example.game.moves;
 
 public interface MoveStrategy {
     String moveAttack();

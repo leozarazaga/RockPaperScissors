@@ -1,4 +1,4 @@
-package org.example.Menu;
+package org.example.util;
 
 public class RoundResult {
     private final String playerChoice;

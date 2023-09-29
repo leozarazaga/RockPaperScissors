@@ -1,6 +1,7 @@
-package org.example.Menu;
+package org.example.menu;
 
-import org.example.GameRecord;
+import org.example.record.GameRecord;
+import org.example.util.RoundResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class History {
             }
 
             System.out.println("\nFinal Result: " + gameRecord.getFinalResult());
-            System.out.println("═════════════════════════════════════════");
+            System.out.println("══════════════════════════");
         }
 
         goBackToMainMenu();

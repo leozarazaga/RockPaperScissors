@@ -1,6 +1,6 @@
-package org.example.GameLogic;
+package org.example.game.gameLogic;
 
-import org.example.Moves.MoveStrategy;
+import org.example.game.moves.MoveStrategy;
 
 public class GameLogic {
 

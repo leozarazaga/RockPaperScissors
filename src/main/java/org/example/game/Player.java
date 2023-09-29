@@ -1,10 +1,10 @@
-package org.example;
+package org.example.game;
 
-import org.example.Menu.RoundResult;
-import org.example.Moves.MoveStrategy;
-import org.example.Moves.Paper;
-import org.example.Moves.Rock;
-import org.example.Moves.Scissors;
+import org.example.util.RoundResult;
+import org.example.game.moves.MoveStrategy;
+import org.example.game.moves.Paper;
+import org.example.game.moves.Rock;
+import org.example.game.moves.Scissors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class Player {
             case 3:
                 return new Scissors();
             default:
-                System.out.print("Invalid choice. Select 1, 2, or 3.");
+                System.out.print("Invalid choice. Select 1, 2, or 3.\n");
                 return getPlayerChoice(scanner);
         }
     }
