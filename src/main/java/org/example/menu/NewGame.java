@@ -1,34 +1,32 @@
 // NewGame.java
-package org.example.Menu;
+package org.example.menu;
 
-import org.example.Computer;
-import org.example.GameHandler;
-import org.example.GameRecord;
-import org.example.Player;
+import org.example.game.Computer;
+import org.example.game.GameHandler;
+import org.example.record.GameRecord;
+import org.example.game.Player;
 
 import java.util.Scanner;
 
 public class NewGame {
 
     static Scanner scanner = new Scanner(System.in);
-    public static Player player;
-    private static Computer computer;
-
     public static void newGame() {
-        System.out.println("\nNew Game\n̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅̅ ");
+        System.out.println("\nYou vs Randomizer\n̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅̅ ̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ");
         System.out.print("Enter your name: ");
         String playerName = scanner.nextLine();
 
         System.out.print("Rounds to play: ");
         int roundsSelectedByPlayer = scanner.nextInt();
+        scanner.nextLine();
 
-        computer = new Computer();
-        player = new Player(playerName);
+        Computer computer = new Computer();
+        Player player = new Player(playerName);
 
         GameHandler gameHandler = new GameHandler(player, computer);
         gameHandler.playGame(roundsSelectedByPlayer);
 
-        GameRecord gameRecord = new GameRecord(player.getName(), player.getPlayerHistory(), determineFinalResult(player, computer));
+        GameRecord gameRecord = new GameRecord(player.getName(), player.getPlayerHistory(), displayFinalResult(player, computer));
 
         History.addGameRecord(gameRecord);
 
@@ -36,7 +34,9 @@ public class NewGame {
         goBackToMainMenu();
     }
 
-    private static String determineFinalResult(Player player, Computer computer) {
+
+
+    private static String displayFinalResult(Player player, Computer computer) {
         if (player.getScore() > computer.getScore()) {
             return "Player wins!";
         } else if (player.getScore() < computer.getScore()) {
@@ -45,6 +45,7 @@ public class NewGame {
             return "It's a tie!";
         }
     }
+
 
     public static void goBackToMainMenu() {
         System.out.print("\n↩ Press Enter to go back ");

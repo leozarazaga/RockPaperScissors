@@ -1,13 +1,13 @@
-package org.example;
+package org.example.game;
 
-import org.example.GameLogic.GameLogic;
-import org.example.Moves.MoveStrategy;
+import org.example.game.gameLogic.GameLogic;
+import org.example.game.moves.MoveStrategy;
 
 import java.util.Scanner;
 
 public class GameHandler {
-    private Player player;
-    private Computer computer;
+    private final Player player;
+    private final Computer computer;
     public GameHandler(Player player, Computer computer) {
         this.player = player;
         this.computer = computer;

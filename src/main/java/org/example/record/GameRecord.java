@@ -1,13 +1,13 @@
-package org.example;
+package org.example.record;
 
-import org.example.Menu.RoundResult;
+import org.example.util.RoundResult;
 
 import java.util.List;
 
 public class GameRecord {
-    private String playerName;
-    private List<RoundResult> roundResults;
-    private String finalResult;
+    private final String playerName;
+    private final List<RoundResult> roundResults;
+    private final String finalResult;
 
     public GameRecord(String playerName, List<RoundResult> roundResults, String finalResult) {
         this.playerName = playerName;
