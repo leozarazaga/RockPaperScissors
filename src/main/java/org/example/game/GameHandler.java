@@ -1,18 +1,21 @@
 package org.example.game;
 
-import org.example.game.gameLogic.GameLogic;
-import org.example.game.moves.MoveStrategy;
+import org.example.interfaces.MoveStrategy;
+import org.example.opponents.Opponent;
+import org.example.player.Player;
 
 import java.util.Scanner;
 
 public class GameHandler {
     private final Player player;
-    private final Computer computer;
-    public GameHandler(Player player, Computer computer) {
+    private final Opponent opponent;
+
+    public GameHandler(Player player, Opponent opponent) {
         this.player = player;
-        this.computer = computer;
+        this.opponent = opponent;
     }
-    public void playGame(int roundsSelectedByPlayer) {
+
+    public void startTheGame(int roundsSelectedByPlayer) {
         Scanner scanner = new Scanner(System.in);
 
         int roundCount = 0;
@@ -22,23 +25,111 @@ public class GameHandler {
             System.out.println("\nRound " + roundCount + " / " + roundsSelectedByPlayer);
 
             MoveStrategy playerChoice = player.getPlayerChoice(scanner);
-            MoveStrategy computerChoice = computer.generateComputerMove();
+            String opponentChoice = opponent.handMove();
 
-            System.out.println("\nYou selected: " + playerChoice.moveAttack());
-            System.out.println("Computer selected: " + computerChoice.moveAttack());
+            System.out.println("\nYou selected: " + playerChoice.handMove());
+            System.out.println(opponent.getName() + " selected: " + opponentChoice);
             scanner.nextLine();
 
-            GameLogic game = new GameLogic();
-            String roundResult = game.PlayGame(playerChoice, computerChoice);
+            String roundResult = gameLogic(playerChoice.handMove(), opponentChoice);
             System.out.println(roundResult);
+
 
             if (roundResult.equals("Player wins!")) {
                 player.incrementPlayerScore();
-            } else if (roundResult.equals("Computer wins!")) {
-                computer.incrementComputerScore();
+            } else if (roundResult.equals("Opponent wins!")) {
+                opponent.incrementOpponentScore();
             }
 
-            player.addToPlayerHistory(playerChoice.moveAttack(), computerChoice.moveAttack(), roundResult);
+            String opponentName = opponent.getName();
+            player.addToPlayerHistory(playerChoice.handMove(), opponentChoice, roundResult, opponentName);
+        }
+    }
+
+    public String gameLogic(String playerChoice, String opponentChoice) {
+        if (playerChoice.equals(opponentChoice)) {
+            return "It is a tie!";
+        } else if ((playerChoice.equals("Rock") && opponentChoice.equals("Scissors")) ||
+                (playerChoice.equals("Paper") && opponentChoice.equals("Rock")) ||
+                (playerChoice.equals("Scissors") && opponentChoice.equals("Paper"))) {
+            return "Player wins!";
+        } else {
+            return "Opponent wins!";
         }
     }
 }
+
+
+
+
+
+
+
+/*
+
+//OLD CODE
+// My Rounds are working well:  Leo: Rock | Opponent: Rock | Result: It is a tie!
+//I can see what the player haas chosen and what the Opponent has chosen.
+package org.example.game;
+
+import org.example.interfaces.MoveStrategy;
+import org.example.opponents.Opponent;
+import org.example.player.Player;
+
+import java.util.Scanner;
+
+public class GameHandler {
+    private final Player player;
+    private final Opponent opponent;
+
+    public GameHandler(Player player, Opponent opponent) {
+        this.player = player;
+        this.opponent = opponent;
+    }
+
+    public void startTheGame(int roundsSelectedByPlayer) {
+        Scanner scanner = new Scanner(System.in);
+
+        int roundCount = 0;
+        while (roundCount < roundsSelectedByPlayer) {
+            roundCount++;
+
+            System.out.println("\nRound " + roundCount + " / " + roundsSelectedByPlayer);
+
+            MoveStrategy playerChoice = player.getPlayerChoice(scanner);
+            String opponentChoice = opponent.handMove();
+
+            System.out.println("\nYou selected: " + playerChoice.handMove());
+            System.out.println(opponent.getName() + " selected: " + opponentChoice);
+            scanner.nextLine();
+
+            String roundResult = gameLogic(playerChoice.handMove(), opponentChoice);
+            System.out.println(roundResult);
+
+
+            if (roundResult.equals("Player wins!")) {
+                player.incrementPlayerScore();
+            } else if (roundResult.equals("Opponent wins!")) {
+                opponent.incrementOpponentScore();
+            }
+
+            player.addToPlayerHistory(playerChoice.handMove(), opponentChoice, roundResult, opponent.getName());
+        }
+    }
+
+    public String gameLogic(String playerChoice, String opponentChoice) {
+        if (playerChoice.equals(opponentChoice)) {
+            return "It is a tie!";
+        } else if ((playerChoice.equals("Rock") && opponentChoice.equals("Scissors")) ||
+                (playerChoice.equals("Paper") && opponentChoice.equals("Rock")) ||
+                (playerChoice.equals("Scissors") && opponentChoice.equals("Paper"))) {
+            return "Player wins!";
+        } else {
+            return "Opponent wins!";
+        }
+    }
+}
+
+
+
+*/

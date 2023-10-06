@@ -1,15 +1,15 @@
-package org.example.menu;
+package org.example.history;
 
-import org.example.record.GameRecord;
-import org.example.util.RoundResult;
+import org.example.game.GameRecord;
+import org.example.game.RoundResult;
+import org.example.menu.MainMenu;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class History {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final List<GameRecord> gameRecords = new ArrayList<>();
+    public static final List<GameRecord> gameRecords = new ArrayList<>(); // Remove static here
+
 
     public static void displayGameHistory() {
         System.out.println("\nGame History\n̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ");
@@ -23,17 +23,18 @@ public class History {
             for (int i = 0; i < playerHistory.size(); i++) {
                 RoundResult roundResult = playerHistory.get(i);
                 System.out.println("Round " + (i + 1) + ":");
-                System.out.println("  " + playerName + ": " + roundResult.getPlayerChoice() + " | Computer: " + roundResult.getComputerChoice() + " | Result: " + roundResult.getResult());
+                System.out.println("  " + playerName + ": " + roundResult.getPlayerChoice() + " | " + roundResult.getOpponentName() + ": " + roundResult.getOpponentChoice() + " | Result: " + roundResult.getResult());
             }
-
-            System.out.println("\nFinal Result: " + gameRecord.getFinalResult());
-            System.out.println("══════════════════════════");
         }
-
         goBackToMainMenu();
     }
+
     public static void addGameRecord(GameRecord gameRecord) {
         gameRecords.add(gameRecord);
+    }
+
+    public static void clearGameHistory() {
+        gameRecords.clear();
     }
 
     public static void goBackToMainMenu() {
@@ -42,3 +43,4 @@ public class History {
         MainMenu.mainMenu();
     }
 }
+

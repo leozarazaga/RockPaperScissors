@@ -1,10 +1,16 @@
 package org.example.menu;
 
+
+import org.example.game.NewGame;
+import org.example.history.History;
+import org.example.player.Player;
+
 import java.util.Scanner;
 
 public class MainMenu {
     static Scanner scanner = new Scanner(System.in);
     static boolean programActive = true;
+    static Player player;
 
     public static void mainMenu() {
 
@@ -15,6 +21,7 @@ public class MainMenu {
             programActive = false;
         }
 
+
         System.out.println("\n\t MAIN MENU\n\t̅ ̅ ̅ ̅̅ ̅ ̅ ̅ ̅ ̅̅ ̅̅ ");
         System.out.println("1.New Game\n2.History\n3.Stats\n4.Exit ");
 
@@ -23,13 +30,13 @@ public class MainMenu {
 
         switch (option) {
             case 1:
-                NewGameSubmenu.newGameSubmenu();
+                NewGame.newGame();
                 break;
             case 2:
                 History.displayGameHistory();
                 break;
             case 3:
-                System.out.println("Stats coming soon, autumn 2023!");
+                NewGame.player.displayStatistics();
                 break;
             case 4:
                 programActive = false;
@@ -41,5 +48,4 @@ public class MainMenu {
         }
 
     }
-
 }

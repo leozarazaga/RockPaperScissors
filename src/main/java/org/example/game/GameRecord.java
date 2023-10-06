@@ -1,18 +1,14 @@
-package org.example.record;
-
-import org.example.util.RoundResult;
+package org.example.game;
 
 import java.util.List;
 
 public class GameRecord {
     private final String playerName;
     private final List<RoundResult> roundResults;
-    private final String finalResult;
 
-    public GameRecord(String playerName, List<RoundResult> roundResults, String finalResult) {
+    public GameRecord(String playerName, List<RoundResult> roundResults) {
         this.playerName = playerName;
         this.roundResults = roundResults;
-        this.finalResult = finalResult;
     }
 
     public String getPlayerName() {
@@ -21,9 +17,5 @@ public class GameRecord {
 
     public List<RoundResult> getRoundResults() {
         return roundResults;
-    }
-
-    public String getFinalResult() {
-        return finalResult;
     }
 }
