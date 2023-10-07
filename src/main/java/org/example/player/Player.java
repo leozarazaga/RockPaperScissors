@@ -16,7 +16,6 @@ public class Player {
     private final String name;
     private int playerScore;
     private final List<RoundResult> playerHistory;
-    private final List<String> opponentsPlayedAgainst;
 
     private int totalWins;
     private int winsAgainstComputer;
@@ -27,7 +26,6 @@ public class Player {
         this.name = name;
         this.playerScore = 0;
         this.playerHistory = new ArrayList<>();
-        this.opponentsPlayedAgainst = new ArrayList<>();
     }
 
     public String getName() {
@@ -69,7 +67,7 @@ public class Player {
     }
 
 
-    // STATISTICS  <------
+    //Statistics
     public double getOverallWinPercentage() {
         int totalGames = playerHistory.size();
         if (totalGames == 0) {
@@ -124,14 +122,9 @@ public class Player {
                 .count();
     }
 
- // END OF STATISTICS --->
 
     public void addToPlayerHistory(String playerChoice, String opponentChoice, String gameRoundResult, String opponentName) {
         playerHistory.add(new RoundResult(playerChoice, opponentChoice, gameRoundResult, opponentName));
-
-       if (!opponentsPlayedAgainst.contains(opponentName)) {
-            opponentsPlayedAgainst.add(opponentName);
-        }
 
         if (gameRoundResult.equals("Player wins!")) {
             switch (opponentName) {
@@ -150,25 +143,24 @@ public class Player {
 
 
 
-
     public void displayStatistics() {
         System.out.println("\nStatistics\n̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ");
         System.out.println("Total Wins: " + totalWins);
 
         double overallWinPercentage = getOverallWinPercentage();
-        System.out.println("Overall Win Percentage: " + overallWinPercentage + "%");
+        System.out.println("Overall win percentage: " + overallWinPercentage + "%");
 
         int gamesAgainstComputer = countGamesAgainstComputer();
         double winPercentageAgainstComputer = getWinPercentageAgainstComputer();
-        System.out.println("Win Percentage Against Computer: " + winPercentageAgainstComputer + "% (Games: " + gamesAgainstComputer + ")");
+        System.out.println("Win percentage against Computer: " + winPercentageAgainstComputer + "% (Games: " + gamesAgainstComputer + ")");
 
         int gamesAgainstChronos = countGamesAgainstChronos();
         double winPercentageAgainstChronos = getWinPercentageAgainstChronos();
-        System.out.println("Win Percentage Against Chronos: " + winPercentageAgainstChronos + "% (Games: " + gamesAgainstChronos + ")");
+        System.out.println("Win percentage against Chronos: " + winPercentageAgainstChronos + "% (Games: " + gamesAgainstChronos + ")");
 
         int gamesAgainstNamecraft = countGamesAgainstNamecraft();
         double winPercentageAgainstNamecraft = getWinPercentageAgainstNamecraft();
-        System.out.println("Win Percentage Against Namecraft: " + winPercentageAgainstNamecraft + "% (Games: " + gamesAgainstNamecraft + ")");
+        System.out.println("Win percentage against Namecraft: " + winPercentageAgainstNamecraft + "% (Games: " + gamesAgainstNamecraft + ")");
 
         goBackToMainMenu();
     }

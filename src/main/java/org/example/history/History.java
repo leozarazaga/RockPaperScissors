@@ -4,13 +4,14 @@ import org.example.game.GameRecord;
 import org.example.game.RoundResult;
 import org.example.menu.MainMenu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 
 public class History {
     private static final Scanner scanner = new Scanner(System.in);
-    public static final List<GameRecord> gameRecords = new ArrayList<>(); // Remove static here
-
-
+    public static final List<GameRecord> gameRecords = new ArrayList<>();
     public static void displayGameHistory() {
         System.out.println("\nGame History\n̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ");
 
