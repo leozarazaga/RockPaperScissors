@@ -74,7 +74,7 @@ public class Player {
             return 0.0;
         }
         double winPercentage = (double) totalWins / totalGames * 100;
-        return Math.floor(winPercentage * 100) / 100; // Round down to two decimal places
+        return Math.floor(winPercentage * 100) / 100;
     }
 
     public int countGamesAgainstComputer() {
@@ -84,6 +84,7 @@ public class Player {
     public int countGamesAgainstChronos() {
         return countGamesAgainstOpponent("Chronos");
     }
+
 
     public int countGamesAgainstNamecraft() {
         return countGamesAgainstOpponent("Namecraft");
@@ -122,7 +123,6 @@ public class Player {
                 .count();
     }
 
-
     public void addToPlayerHistory(String playerChoice, String opponentChoice, String gameRoundResult, String opponentName) {
         playerHistory.add(new RoundResult(playerChoice, opponentChoice, gameRoundResult, opponentName));
 
@@ -140,7 +140,6 @@ public class Player {
             }
         }
     }
-
 
 
     public void displayStatistics() {

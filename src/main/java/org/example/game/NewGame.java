@@ -13,10 +13,19 @@ public class NewGame {
     public static Player player;
 
     public static void newGame() {
-        System.out.println("\nNew Game\n̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ");
-        System.out.print("Enter your name: ");
-        String playerName = scanner.nextLine();
-        player = new Player(playerName);
+        player = null;
+
+        while (player == null || player.getName().trim().isEmpty()) {
+            System.out.println("\nNew Game\n̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ");
+            System.out.print("Enter your name: ");
+            String playerName = scanner.nextLine();
+
+            if (!playerName.matches("^[a-zA-Z]+$")) {
+                System.out.println("Please enter a valid name.");
+            } else {
+                player = new Player(playerName);
+            }
+        }
 
         while (true) {
             Opponent opponent = selectOpponent();

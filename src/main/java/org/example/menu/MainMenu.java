@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class MainMenu {
     static Scanner scanner = new Scanner(System.in);
     static boolean programActive = true;
-    static Player player;
 
     public static void mainMenu() {
 
